@@ -60,6 +60,7 @@ export const DeployedContracts = {
 
 export const isMainnet = () => getNetworkName() === DeploymentNetwork.Mainnet;
 export const isArbitrumOne = () => getNetworkName() === DeploymentNetwork.ArbitrumOne;
+export const isXrp = () => getNetworkName() === DeploymentNetwork.Xrp;
 export const isOptimism = () => getNetworkName() === DeploymentNetwork.Optimism;
 export const isBase = () => getNetworkName() === DeploymentNetwork.Base;
 export const isScroll = () => getNetworkName() === DeploymentNetwork.Scroll;
@@ -81,7 +82,8 @@ export const isTestnet = () =>
   isArbitrumGoerli() ||
   isPolygonMumbai() ||
   isLineaGoerli() ||
-  isScrollSepolia();
+  isScrollSepolia() ||
+  isXrp();
 export const isLive = () => isMainnet() || isTestnet();
 
 export const getDeploymentDir = () => {

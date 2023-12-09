@@ -11,6 +11,7 @@ import { MochaOptions } from 'mocha';
 
 interface EnvOptions {
   ETHEREUM_PROVIDER_URL?: string;
+  XRP_PROVIDER_URL?: string;
   ETHEREUM_ARBITRUM_ONE_PROVIDER_URL?: string;
   ETHEREUM_OPTIMISM_PROVIDER_URL?: string;
   ETHEREUM_BASE_PROVIDER_URL?: string;
@@ -30,6 +31,7 @@ interface EnvOptions {
 
 const {
   ETHEREUM_PROVIDER_URL = '',
+  XRP_PROVIDER_URL="https://rpc-evm-sidechain.xrpl.org",
   ETHEREUM_ARBITRUM_ONE_PROVIDER_URL = '',
   ETHEREUM_OPTIMISM_PROVIDER_URL = '',
   ETHEREUM_BASE_PROVIDER_URL = '',
@@ -80,6 +82,13 @@ const config: HardhatUserConfig = {
     [DeploymentNetwork.Mainnet]: {
       chainId: 1,
       url: ETHEREUM_PROVIDER_URL,
+      saveDeployments: true,
+      live: true
+    },
+    [DeploymentNetwork.Xrp]: {
+      chainId: 1440002,
+      url: XRP_PROVIDER_URL,
+      accounts: [process.env.PK],
       saveDeployments: true,
       live: true
     },
@@ -185,6 +194,21 @@ const config: HardhatUserConfig = {
   },
 
   namedAccounts: NamedAccounts,
+  etherscan: {
+    apiKey: {
+      xrp: "abc"
+    },
+    customChains: [
+      {
+        network: "xrp",
+        chainId: 1440002,
+        urls: {
+          apiURL: "https://evm-sidechain.xrpl.org/api",
+          browserURL: "https://evm-sidechain.xrpl.org"
+        }
+      }
+    ]
+  },
 
   verify: {
     etherscan: {

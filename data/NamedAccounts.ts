@@ -11,6 +11,7 @@ const { DEPLOYER: deployer = 'ledger://0x000000000000000000000000000000000000000
 export const NamedAccounts = {
   deployer: {
     [DeploymentNetwork.Mainnet]: deployer,
+    [DeploymentNetwork.Xrp]: deployer,
     [DeploymentNetwork.Optimism]: deployer,
     [DeploymentNetwork.Base]: deployer,
     [DeploymentNetwork.ArbitrumOne]: deployer,
